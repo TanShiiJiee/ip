@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Toto {
-    private static ArrayList<String> itemList; // Stores array of item names
+    private static ArrayList<Task> itemList; // Stores array of item names
     public static void main(String[] args) {
         //Start Greeting
         String start = "___________________________________________________________ \n"
@@ -18,10 +18,15 @@ public class Toto {
         ListOfItems lst = new ListOfItems();
         while (true) {
             String command = sc.nextLine(); //Stores user inputs
-            if (command.equalsIgnoreCase("bye")) {
+            String[] tmp = command.split(" ");
+            if (tmp[0].equalsIgnoreCase("bye")) {
                 break; // Exits
-            } else if (command.equalsIgnoreCase("list")) {
+            } else if (tmp[0].equalsIgnoreCase("list")) {
                 lst.printItem(itemList); //Print List of Items in Array List
+            } else if (tmp[0].equalsIgnoreCase("mark")) { //Mark the task
+                itemList.get(Integer.parseInt(tmp[1]) - 1).markChecked();
+            } else if (tmp[0].equalsIgnoreCase("unmark")) { //Unmark the task
+                    itemList.get(Integer.parseInt(tmp[1]) - 1).unmarkChecked();
             } else {
                 lst.addItems(itemList, command); //Add item into ArrayList
             }
