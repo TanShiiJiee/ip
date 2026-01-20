@@ -1,26 +1,30 @@
 public class Echo {
-    private String msg;
+    private final String msg;
     public Echo(String msg) {
         this.msg = msg;
     }
 
-    public void printEcho() {
+    public static void printEcho() {
         String line = "___________________________________________________________ \n";
-        System.out.println(line + "added: " + this.msg + "\n" + line);
+        System.out.println(line + "Task received! Toto had added this task:");
     }
 
     public void printMark(boolean mark) {
+        String line = "___________________________________________________________ \n";
+        String markMsg;
+        //String checkedMark;
         if (mark) {
-            String line = "___________________________________________________________ \n";
-            System.out.println(line + "Done! Toto is very happy :)");
-            System.out.println("[X] " + msg);
-            System.out.println(line);
+            markMsg = "Done! Toto is very happy :)";
+            //checkedMark = "[X] ";
         } else {
-            String line = "___________________________________________________________ \n";
-            System.out.println(line + "Oh no! Back to work!");
-            System.out.println("[ ] " + msg);
-            System.out.println(line);
+            markMsg = "Oh no! Back to work!";
+            // = "[ ] ";
         }
+
+        System.out.println(line + markMsg);
+//        System.out.println(checkedMark + msg);
+//        System.out.println(line);
+
     }
 
 }
