@@ -27,4 +27,9 @@ public class Echo {
 
     }
 
+    public static void printDeleted() {
+        String line = "___________________________________________________________ \n";
+        System.out.println(line + "Task Deleted! Toto had removed this task:");
+    }
+
 }

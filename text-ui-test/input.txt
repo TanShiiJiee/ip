@@ -11,5 +11,6 @@ mark 0
 blah
 deadline return book /by Sunday
 event project meeting /from Mon 2pm /to 4pm
+delete 5
 list
 bye

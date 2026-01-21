@@ -18,6 +18,10 @@ public class Task {
         return this.description;
     }
 
+    public void deleteTask() {
+
+    }
+
     public void markChecked() {
         String line = "___________________________________________________________ \n";
         this.isChecked = true;

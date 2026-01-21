@@ -11,6 +11,7 @@ public class Toto {
         String commandsAvail = "- list\n" +
                 "- mark <Task Number>\n" +
                 "- unmark <Task Number>\n" +
+                "- delete <Task Number>\n" +
                 "- todo <Task>\n" +
                 "- deadline <Task Name> /by <Date/Time>\n" +
                 "- event <Task Name> /from <Date/Time> /to <Date/time>\n" +
@@ -23,11 +24,15 @@ public class Toto {
         ListOfItems lst = new ListOfItems();
         boolean isValidCommand; //check if valid command
         boolean isValidFormat; //check if valid task format
+        boolean isDeleted;
+        //User enters inputs
         while (true) {
             String command = sc.nextLine(); //Stores user inputs
             String[] tmp = command.split(" ", 2);
             isValidCommand = true;
             isValidFormat = true;
+            isDeleted = false;
+
             try {
                 if (tmp[0].equalsIgnoreCase("bye")) {
                     break; // Exits
@@ -35,12 +40,12 @@ public class Toto {
                     lst.printItem(itemList); //Print List of Items in Array List
                 } else if (tmp[0].equalsIgnoreCase("mark")) { //Mark the task
                     if (Integer.parseInt(tmp[1]) < 1 || Integer.parseInt(tmp[1]) > itemList.size()) {
-                        throw new TotoException("Toto can't find the item :( \nPlease try again: ");
+                        throw new TotoException(line + "Toto can't find the item :( \nPlease try again: ");
                     }
                     itemList.get(Integer.parseInt(tmp[1]) - 1).markChecked();
                 } else if (tmp[0].equalsIgnoreCase("unmark")) { //Unmark the task
                     if (Integer.parseInt(tmp[1]) < 1 || Integer.parseInt(tmp[1]) > itemList.size()) {
-                        throw new TotoException("Toto can't find the item :( \nPlease try again: ");
+                        throw new TotoException(line + "Toto can't find the item :( \nPlease try again: ");
                     }
 
                     itemList.get(Integer.parseInt(tmp[1]) - 1).unmarkChecked();
@@ -75,20 +80,40 @@ public class Toto {
                             System.out.println(line + "Toto senses your task format is wrong...\n" +
                                     "Please type again in this format(deadline <Task Name> /by <Date/Time>): ");
                         }
+                    } else if (tmp[0].equalsIgnoreCase("delete")) {
+                        try {
+                            if (Integer.parseInt(tmp[1]) < 1 || Integer.parseInt(tmp[1]) > itemList.size()) {
+                                throw new TotoException(line + "Toto can't find the item :( \nPlease try again: ");
+                            } else {
+                                isDeleted = true;
+                            }
+
+                        } catch (IndexOutOfBoundsException e) { //Task number stated is not part of list
+                            isValidFormat = false;
+                            System.out.println(line + "Toto senses your instruction format is wrong...\n" +
+                                    "Please type again in this format(delete <Task Number>): ");
+                        }
 
                     } else {
-                        isValidCommand = false;
+                        isValidCommand = false; //command is not valid
                     }
                     //lst.addItems(itemList, command);
 
                     if (!isValidCommand) {
                         throw new TotoException(line + "Toto doesn't understand :( \nPlease input a command from the following: \n" +
-                                commandsAvail + "Toto is waiting: ");
-                    } else if (isValidFormat) {
-                        Echo.printEcho(); //Task received printed message
-                        System.out.println(itemList.get(itemList.size() - 1).toString());
+                                commandsAvail + "Toto is waiting: "); //not valid command
+                    } else if (isValidFormat) { //correct format
+                        if (isDeleted) { //task is being deleted
+                            Echo.printDeleted(); //Task Deleted printed message
+                            System.out.println(itemList.get(Integer.parseInt(tmp[1]) - 1).toString()); //prints deleted task
+                            itemList.remove(Integer.parseInt(tmp[1]) - 1); //remove task from arrayList
+                        } else {
+                            Echo.printEcho(); //Task received printed message
+                            System.out.println(itemList.get(itemList.size() - 1).toString()); //prints task added to list
+                        }
+
                         System.out.println("Now You have " + itemList.size()
-                                + " task(s) in the list!"  + "\n" + line);
+                                + " task(s) in the list!" + "\n" + line);
                     }
 
 
