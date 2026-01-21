@@ -1,6 +1,13 @@
 ___________________________________________________________
-Hello! I'm Toto
-What can I do for you?
+Hello! I'm Toto! Here is what I can do:
+- list
+- mark <Task Number>
+- unmark <Task Number>
+- todo <Task>
+- deadline <Task Name> /by <Date/Time>
+- event <Task Name> /from <Date/Time> /to <Date/time>
+- bye
+So, what can I do for you?
 ___________________________________________________________
 
 ___________________________________________________________
@@ -11,7 +18,7 @@ ___________________________________________________________
 
 ___________________________________________________________
 Task received! Toto had added this task:
-[D][ ] return book(by: June 6th)
+[D][ ] return book (by: June 6th)
 Now You have 2 task(s) in the list!
 ___________________________________________________________
 
@@ -21,62 +28,69 @@ Done! Toto is very happy :)
 ___________________________________________________________
 
 ___________________________________________________________
-Task received! Toto had added this task:
-[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-Now You have 3 task(s) in the list!
-___________________________________________________________
-
-___________________________________________________________
-Done! Toto is very happy :)
-[E][X] project meeting (from: Aug 6th 2pm to: 4pm)
-___________________________________________________________
-
+Toto senses you did not include your task...
+Please include your task as well:
+Toto can't find the item :(
+Please try again:
 ___________________________________________________________
 Task received! Toto had added this task:
 [T][ ] join sports club
-Now You have 4 task(s) in the list!
+Now You have 3 task(s) in the list!
 ___________________________________________________________
 
 ___________________________________________________________
 Task received! Toto had added this task:
 [T][ ] borrow book
-Now You have 5 task(s) in the list!
+Now You have 4 task(s) in the list!
 ___________________________________________________________
 
 ___________________________________________________________
 Oh no! Back to work!
-[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+[T][ ] join sports club
 ___________________________________________________________
 
 ___________________________________________________________
 Done! Toto is very happy :)
-[T][X] join sports club
+[T][X] borrow book
 ___________________________________________________________
 
+Toto can't find the item :(
+Please try again:
+___________________________________________________________
+Toto doesn't understand :(
+Please input a command from the following:
+- list
+- mark <Task Number>
+- unmark <Task Number>
+- todo <Task>
+- deadline <Task Name> /by <Date/Time>
+- event <Task Name> /from <Date/Time> /to <Date/time>
+- bye
+Toto is waiting:
 ___________________________________________________________
 Task received! Toto had added this task:
-[D][ ] return book(by: Sunday)
-Now You have 6 task(s) in the list!
+[D][ ] return book (by: Sunday)
+Now You have 5 task(s) in the list!
 ___________________________________________________________
 
 ___________________________________________________________
 Task received! Toto had added this task:
 [E][ ] project meeting (from: Mon 2pm to: 4pm)
-Now You have 7 task(s) in the list!
+Now You have 6 task(s) in the list!
 ___________________________________________________________
 
 ___________________________________________________________
 
 Task delivery! Toto's got your back:
 1.[T][X] read book
-2.[D][ ] return book(by: June 6th)
-3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-4.[T][X] join sports club
-5.[T][ ] borrow book
-6.[D][ ] return book(by: Sunday)
-7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+2.[D][ ] return book (by: June 6th)
+3.[T][ ] join sports club
+4.[T][X] borrow book
+5.[D][ ] return book (by: Sunday)
+6.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 ___________________________________________________________
 
 ___________________________________________________________
 Bye bye! Hope to see you again soon!
-___________________________________________________________ 
+___________________________________________________________
+
