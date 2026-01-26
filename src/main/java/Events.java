@@ -8,10 +8,13 @@ public class Events extends Task{
         this.to = to;
     }
 
+    public String writeTask() {
+        return "E-" + super.writeTask() + "-" + this.from + "-" + this.to;
+    }
 
     @Override
     public String toString() {
         String line = "___________________________________________________________ \n";
-        return "[E]" + super.toString() + " (from:" + from + " to:" + to + ")";
+        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
     }
 }
