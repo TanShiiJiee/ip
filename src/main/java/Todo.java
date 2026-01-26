@@ -4,6 +4,12 @@ public class Todo extends Task{
         super(desc);
     }
 
+
+    @Override
+    public String writeTask() {
+        return "T-" + super.writeTask();
+    }
+
     @Override
     public String toString() {
         String line = "___________________________________________________________ \n";

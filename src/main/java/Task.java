@@ -18,9 +18,6 @@ public class Task {
         return this.description;
     }
 
-    public void deleteTask() {
-
-    }
 
     public void markChecked() {
         String line = "___________________________________________________________ \n";
@@ -38,8 +35,18 @@ public class Task {
         System.out.println(this + "\n" + line);
     }
 
+    public String writeTask() {
+        if (isChecked) {
+            return "1-" + getDescription();
+        } else {
+            return "0-" + getDescription();
+        }
+    }
+
+
     @Override
     public String toString() {
+
         return "[" + getMark() + "] " + this.description;
     }
 }
