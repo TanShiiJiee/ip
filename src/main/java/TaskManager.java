@@ -18,6 +18,7 @@ public class TaskManager {
      */
     public void loadTasks() {
         File file = new File(taskFile);
+        file.getParentFile().mkdirs();
         try {
             if (file.createNewFile()) {
                 System.out.println("Looks like you are new here! Welcome!");
@@ -25,7 +26,7 @@ public class TaskManager {
                 Scanner sc = new Scanner(new FileReader(taskFile));
                 while (sc.hasNext()) {
                     String readTask = sc.nextLine();
-                    String[] tmp = readTask.split("|");
+                    String[] tmp = readTask.split("-");
                     if (tmp[0].equalsIgnoreCase("T")) {
                         taskArrayList.add(new Todo(tmp[2]));
                         if (Integer.parseInt(tmp[1]) == 1) {
@@ -56,7 +57,7 @@ public class TaskManager {
      */
     public void saveTasks(Task task) {
         try (BufferedWriter bw = new BufferedWriter((new FileWriter(taskFile, true)))) {
-            bw.write(task.writeTask());
+            bw.write(task.writeTask() + "\n");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -70,7 +71,7 @@ public class TaskManager {
     public void updateTasks(ArrayList<Task> taskArrayList) {
         try (BufferedWriter bw = new BufferedWriter((new FileWriter(taskFile)))) {
             for (int i = 0; i < taskArrayList.size(); i++) {
-                bw.write(taskArrayList.get(i).writeTask());
+                bw.write(taskArrayList.get(i).writeTask() + "\n");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
