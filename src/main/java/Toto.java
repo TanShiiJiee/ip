@@ -5,28 +5,18 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Toto {
-    private static ArrayList<Task> itemList; // Stores array of item names
-    public static void main(String[] args) {
-        // Line separator
-        String line = "___________________________________________________________ \n";
+    private final Ui ui;
+    private final Storage storage;
+    public Toto(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
 
-        // End Message
-        String end = "Bye bye! Hope to see you again soon!";
-        String commandsAvail = "- list\n" +
-                    "- mark <Task Number>\n" +
-                    "- unmark <Task Number>\n" +
-                    "- delete <Task Number>\n" +
-                    "- todo <Task>\n" +
-                    "- deadline <Task Name> /by <yyyy/M/dd>\n" +
-                    "- event <Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>\n" +
-                    "- bye \n";
-
-        // Start Greeting
-        String start = "Hello! I'm Toto! Here is what I can do: \n" + commandsAvail
-                    + "So, what can I do for you? \n";
-        TaskManager taskManager = new TaskManager();
-        itemList = taskManager.getTaskArrayList();
-        System.out.println(line + start + line); // Print start greeting
+    }
+    public void run() {
+        //Storage storage = new Storage();
+        // Stores array of item names
+        ArrayList<Task> itemList = storage.getTaskArrayList();
+        ui.displayStart();
         Scanner sc = new Scanner(System.in); // Read inputs
         //itemList = new ArrayList<>(); // Stores List of items
         ListOfItems lst = new ListOfItems();
@@ -41,13 +31,14 @@ public class Toto {
             isValidFormat = true;
 
             try {
+                String line = "___________________________________________________________ \n";
                 if (tmp[0].equalsIgnoreCase("bye")) { // User enters "bye" command then chatbot exits
                     break; // Exits
                 } else if (tmp[0].equalsIgnoreCase("list")) {
                     // User enters "list" command then print ArrayList
                     if (tmp.length > 1) {
                         throw new TotoException("Toto doesn't seem to recognize the instruction...\n" +
-                                    "Try again:");
+                                "Try again:");
                     }
                     lst.printItem(itemList); // Print List of Items in Array List
                 } else if (tmp[0].equalsIgnoreCase("mark")) { // Mark the task
@@ -56,10 +47,11 @@ public class Toto {
                             throw new TotoException(line + "Toto can't find the item :( \nPlease try again: ");
                         }
                         itemList.get(Integer.parseInt(tmp[1]) - 1).markChecked();
-                        taskManager.updateTasks(itemList); // Update text file with updated changes
+                        storage.updateTasks(itemList); // Update text file with updated changes
+                        ui.displayMarkCheckedMessage(itemList.get(Integer.parseInt(tmp[1]) - 1));
                     } catch (NumberFormatException | IndexOutOfBoundsException i) {
                         System.out.println("Toto doesn't seem to recognize the instruction...\n" +
-                                    "Try again:");
+                                "Try again:");
                     }
 
                 } else if (tmp[0].equalsIgnoreCase("unmark")) { // Unmark the task
@@ -68,10 +60,11 @@ public class Toto {
                             throw new TotoException(line + "Toto can't find the item :( \nPlease try again: ");
                         }
                         itemList.get(Integer.parseInt(tmp[1]) - 1).unmarkChecked();
-                        taskManager.updateTasks(itemList); // Update text file with updated changes
+                        storage.updateTasks(itemList); // Update text file with updated changes
+                        ui.displayUnmarkCheckedMessage(itemList.get(Integer.parseInt(tmp[1]) - 1));
                     } catch (NumberFormatException | IndexOutOfBoundsException i) {
-                            System.out.println("Toto doesn't seem to recognize the instruction...\n" +
-                                        "Try again:");
+                        System.out.println("Toto doesn't seem to recognize the instruction...\n" +
+                                "Try again:");
                     }
 
 
@@ -79,18 +72,18 @@ public class Toto {
                     try {
                         if (Integer.parseInt(tmp[1]) < 1 || Integer.parseInt(tmp[1]) > itemList.size()) {
                             throw new TotoException(line + "Toto can't find the item :( \n" +
-                                        "Please try again: ");
+                                    "Please try again: ");
                         } else {
-                            Echo.printDeleted(); //Task Deleted printed message
+                            ui.printDeleted(); //Task Deleted printed message
                             System.out.println(itemList.get(Integer.parseInt(tmp[1]) - 1).toString()); //prints deleted task
                             itemList.remove(Integer.parseInt(tmp[1]) - 1); //remove task from arrayList
-                            taskManager.updateTasks(itemList);
+                            storage.updateTasks(itemList);
                         }
 
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         //Task number stated is not part of list
                         System.out.println(line + "Toto senses your instruction format is wrong...\n" +
-                                    "Please type again in this format(delete <Task Number>): ");
+                                "Please type again in this format(delete <Task Number>): ");
                     }
 
                 } else {
@@ -99,10 +92,10 @@ public class Toto {
                             itemList.add(new Todo(tmp[1])); //Add todo into ArrayList
 
                             // Get last added item to be added to text file
-                            taskManager.saveTasks(itemList.get(itemList.size() - 1));
+                            storage.saveTasks(itemList.get(itemList.size() - 1));
                         } else {
                             throw new TotoException(line + "Toto senses you did not include your task...\n" +
-                                        "Please include your task as well: ");
+                                    "Please include your task as well: ");
                         }
 
                     } else if (tmp[0].equalsIgnoreCase("event")) {
@@ -122,12 +115,12 @@ public class Toto {
                                     localDateTimeTo.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"))));
 
                             // Get last added item to be added to text file
-                            taskManager.saveTasks(itemList.get(itemList.size() - 1));
+                            storage.saveTasks(itemList.get(itemList.size() - 1));
                         } catch (ArrayIndexOutOfBoundsException e){
                             isValidFormat = false;
                             System.out.println(line +"Toto senses your task format is wrong...\n" +
-                                        "Please type again in this format(event <Task Name> /from " +
-                                        "<yyyy/M/dd HHmm> /to <yyyy/M/dd HHmm>): ");
+                                    "Please type again in this format(event <Task Name> /from " +
+                                    "<yyyy/M/dd HHmm> /to <yyyy/M/dd HHmm>): ");
                         } catch (DateTimeParseException e) {
                             isValidFormat = false;
                             System.out.println("Invalid date-time format :( \n" +
@@ -143,18 +136,18 @@ public class Toto {
 
                             //Add deadline into ArrayList
                             itemList.add(new Deadlines(desc,
-                                        localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                                    localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
 
                             // Get last added item to be added to text file
-                            taskManager.saveTasks(itemList.get(itemList.size() - 1));
+                            storage.saveTasks(itemList.get(itemList.size() - 1));
                         } catch (ArrayIndexOutOfBoundsException e) {
                             isValidFormat = false;
                             System.out.println(line + "Toto senses your task format is wrong...\n" +
-                                        "Please type again in this format(deadline <Task Name> /by <Date>): ");
+                                    "Please type again in this format(deadline <Task Name> /by <Date>): ");
                         } catch (DateTimeParseException e) {
                             isValidFormat = false;
                             System.out.println("Invalid date format :( \n" +
-                                        "Please use yyyy/M/dd: ");
+                                    "Please use yyyy/M/dd: ");
                         }
                     } else {
                         isValidCommand = false; //command is not valid
@@ -162,20 +155,23 @@ public class Toto {
 
                     if (!isValidCommand) {
                         throw new TotoException(line + "Toto doesn't understand :( \n" +
-                                    "Please input a command from the following: \n" +
-                                    commandsAvail + "Toto is waiting: "); //not valid command
+                                "Please input a command from the following: \n" +
+                                ui.displayCommands() + "Toto is waiting: "); //not valid command
                     } else if (isValidFormat) { //correct format
-                        Echo.printEcho(); //Task received printed message
+                        ui.printAddedTask(); //Task received printed message
                         System.out.println(itemList.get(itemList.size() - 1).toString()); //prints task added to list
 
                         System.out.println("Now You have " + itemList.size()
-                                    + " task(s) in the list!" + "\n" + line);
+                                + " task(s) in the list!" + "\n" + line);
                     }
                 }
             } catch (TotoException e) {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println(line + end + "\n" + line);// Prints exit message
+       ui.displayEnd();// Prints exit message
+    }
+    public static void main(String[] args) {
+        new Toto("data/tasks.txt").run();
     }
 }

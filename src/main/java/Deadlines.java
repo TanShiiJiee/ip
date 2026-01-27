@@ -11,7 +11,7 @@ public class Deadlines extends Task{
 
     @Override
     public String writeTask() {
-        return "D-" + super.writeTask() + "-" + this.by;
+        return "D|" + super.writeTask() + "|" + this.by;
     }
 
     @Override

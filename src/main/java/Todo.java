@@ -7,7 +7,7 @@ public class Todo extends Task{
 
     @Override
     public String writeTask() {
-        return "T-" + super.writeTask();
+        return "T|" + super.writeTask();
     }
 
     @Override
