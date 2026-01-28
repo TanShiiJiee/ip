@@ -1,3 +1,5 @@
+package Toto;
+
 //Handles Task without any date/time
 public class Todo extends Task{
     public Todo(String desc) {

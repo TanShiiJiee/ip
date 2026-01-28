@@ -1,7 +1,5 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+package Toto;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Toto {
@@ -13,7 +11,6 @@ public class Toto {
         storage = new Storage(filePath);
     }
     public void run() {
-        //Storage storage = new Storage();
         // Stores array of item names
         ArrayList<Task> itemList = storage.getTaskArrayList();
         ui.displayStart();

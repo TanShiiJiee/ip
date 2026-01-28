@@ -1,19 +1,19 @@
 Loaded saved file! Ready to serve you!
 ___________________________________________________________
-Hello! I'm Toto! Here is what I can do:
+Hello! I'm Toto.Toto! Here is what I can do:
 - list
-- mark <Task Number>
-- unmark <Task Number>
-- delete <Task Number>
-- todo <Task>
-- deadline <Task Name> /by <yyyy/M/dd>
-- event <Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>
+- mark <Toto.Task Number>
+- unmark <Toto.Task Number>
+- delete <Toto.Task Number>
+- todo <Toto.Task>
+- deadline <Toto.Task Name> /by <yyyy/M/dd>
+- event <Toto.Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>
 - bye
 So, what can I do for you?
 ___________________________________________________________
 
 ___________________________________________________________
-Task received! Toto had added this task:
+Toto.Task received! Toto.Toto had added this task:
 [T][ ] read book
 Now You have 4 task(s) in the list!
 ___________________________________________________________
@@ -22,7 +22,7 @@ return book
 Invalid date format :(
 Please use yyyy/M/dd:
 ___________________________________________________________
-Done! Toto is very happy :)
+Done! Toto.Toto is very happy :)
 [T][X] read book
 ___________________________________________________________
 
@@ -32,31 +32,31 @@ Oh no! Back to work!
 ___________________________________________________________
 
 ___________________________________________________________
-Toto can't find the item :(
+Toto.Toto can't find the item :(
 Please try again:
 ___________________________________________________________
-Toto doesn't understand :(
+Toto.Toto doesn't understand :(
 Please input a command from the following:
 - list
-- mark <Task Number>
-- unmark <Task Number>
-- delete <Task Number>
-- todo <Task>
-- deadline <Task Name> /by <yyyy/M/dd>
-- event <Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>
+- mark <Toto.Task Number>
+- unmark <Toto.Task Number>
+- delete <Toto.Task Number>
+- todo <Toto.Task>
+- deadline <Toto.Task Name> /by <yyyy/M/dd>
+- event <Toto.Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>
 - bye
-Toto is waiting:
+Toto.Toto is waiting:
 return book
 Invalid date format :(
 Please use yyyy/M/dd:
 Invalid date-time format :(
 Please use yyyy/M/dd HHmm:
 ___________________________________________________________
-Toto can't find the item :(
+Toto.Toto can't find the item :(
 Please try again:
 ___________________________________________________________
 
-Task delivery! Toto's got your back:
+Toto.Task delivery! Toto.Toto's got your back:
 1.[T][X] read book
 2.[T][ ] join sports club
 3.[T][ ] borrow book
