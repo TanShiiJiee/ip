@@ -28,12 +28,13 @@ test {
 }
 
 application {
-    mainClass.set("Toto.Toto")
+    mainClass.set("toto.Toto")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "toto"
     archiveClassifier = null
+    archiveFileName = 'Toto.jar'
 }
 
 run{
