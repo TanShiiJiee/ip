@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Handle interactions with the user
  */
@@ -56,7 +58,24 @@ public class Ui {
         System.out.println(line + markMsg);
     }
 
-    public void printAddedTask() {
+    public void printAddedTask(Task task, int size) {
         System.out.println(line + "Task received! Toto had added this task:");
+        System.out.println(task.toString()); //prints task added to list
+        System.out.println("Now You have " + size
+                + " task(s) in the list!" + "\n" + line);
+    }
+
+    //Printing of Task List
+    public void printItem(ArrayList<Task> arrOfItems) {
+        System.out.println(line);
+        System.out.println("Task delivery! Toto's got your back:");
+        for (int i = 0; i < arrOfItems.size(); i++) {
+            System.out.println(i + 1 + "." + arrOfItems.get(i).toString());
+        }
+        System.out.println(line);
+    }
+
+    public void printError(String msg) {
+        System.out.println(msg);
     }
 }
