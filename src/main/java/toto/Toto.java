@@ -2,14 +2,31 @@ package toto;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/**
+ * Represents Toto chatbot.
+ *
+ * @version 1.0
+ * @author Shi Jie Tan
+ */
 public class Toto {
     private final Ui ui;
     private final Storage storage;
     private Parser parser;
+
+    /**
+     * Initializes Toto chatbot.
+     *
+     * @param filePath the path to store the list of task.
+     */
     public Toto(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
     }
+
+    /**
+     * Run Toto chatbot with user inputs.
+     */
     public void run() {
         // Stores array of item names
         ArrayList<Task> itemList = storage.getTaskArrayList();
@@ -85,16 +102,6 @@ public class Toto {
                         "Please input a command from the following: \n" +
                             ui.displayCommands() + "Toto is waiting: "); //not valid command
                 }
-
-//                    if (!isValidCommand) {
-//
-//                    } else if (isValidFormat) { //correct format
-//                        ui.printAddedTask(); //Task received printed message
-//                        System.out.println(itemList.get(itemList.size() - 1).toString()); //prints task added to list
-//
-//                        System.out.println("Now You have " + itemList.size()
-//                                + " task(s) in the list!" + "\n" + line);
-//                    }
 
             } catch (TotoException e) {
                 ui.printError(e.getMessage());

@@ -1,7 +1,7 @@
 package toto;
 
 /**
- * Represents a todo task
+ * Represents a todo task.
  *
  * @version 1.0
  * @author Shi Jie Tan

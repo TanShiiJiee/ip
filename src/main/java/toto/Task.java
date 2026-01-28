@@ -1,7 +1,7 @@
 package toto;
 
 /**
- * Represents a task
+ * Represents a task.
  *
  * @version 1.0
  * @author Shi Jie Tan
@@ -23,7 +23,7 @@ public class Task {
     /**
      * Returns whether this task has been checked.
      *
-     * @return true if tasks is checked, false otherwise
+     * @return true if tasks is checked, false otherwise.
      */
     public boolean isChecked() {
         return isChecked;
@@ -42,23 +42,23 @@ public class Task {
     }
 
     /**
-     * Mark the task as checked
+     * Mark the task as checked.
      */
     public void markChecked() {
         this.isChecked = true;
     }
 
     /**
-     * Mark the task as unchecked
+     * Mark the task as unchecked.
      */
     public void unmarkChecked() {
         this.isChecked = false;
     }
 
     /**
-     * Returns a string representation of the task
+     * Returns a string representation of the task.
      *
-     * @return a partial string to be written in the storage text file
+     * @return a partial string to be written in the storage text file.
      */
     public String writeTask() {
         if (isChecked) {

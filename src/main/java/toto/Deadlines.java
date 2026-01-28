@@ -1,7 +1,7 @@
 package toto;
 
 /**
- * Represents a deadline task
+ * Represents a deadline task.
  *
  * @version 1.0
  * @author Shi Jie Tan

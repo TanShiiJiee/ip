@@ -1,7 +1,7 @@
 package toto;
 
 /**
- * Represents an event task
+ * Represents an event task.
  *
  * @version 1.0
  * @author Shi Jie Tan
