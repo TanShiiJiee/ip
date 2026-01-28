@@ -1,4 +1,4 @@
-package Toto;
+package toto;
 
 //Handles Task without any date/time
 public class Todo extends Task{

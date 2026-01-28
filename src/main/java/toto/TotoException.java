@@ -1,4 +1,4 @@
-package Toto;
+package toto;
 
 public class TotoException extends Exception{
     public TotoException(String message) {

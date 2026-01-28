@@ -1,4 +1,4 @@
-package Toto;
+package toto;
 
 public class Deadlines extends Task{
     private final String by;

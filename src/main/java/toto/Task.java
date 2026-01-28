@@ -1,4 +1,4 @@
-package Toto;
+package toto;
 
 public class Task {
     private final String description;
@@ -6,6 +6,10 @@ public class Task {
     public Task(String desc) {
         this.description = desc;
         this.isChecked = false;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
     }
 
     public String getMark() {

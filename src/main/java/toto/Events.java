@@ -1,4 +1,4 @@
-package Toto;
+package toto;
 
 //Handles Task that start at a specific date/time and ends at a specific date/time
 public class Events extends Task{

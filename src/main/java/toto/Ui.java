@@ -1,4 +1,4 @@
-package Toto;
+package toto;
 
 import java.util.ArrayList;
 
