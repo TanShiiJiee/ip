@@ -1,15 +1,33 @@
 package toto;
 
-//Handles Task that start at a specific date/time and ends at a specific date/time
+/**
+ * Represents an event task
+ *
+ * @version 1.0
+ * @author Shi Jie Tan
+ */
 public class Events extends Task{
-    private String from;
-    private String to;
+    private final String from;
+    private final String to;
+
+    /**
+     * Initializes a deadline task with a description and a start and end date.
+     *
+     * @param desc the description of the task.
+     * @param from the start date and time of the task.
+     * @param to the end date and time of the task.
+     */
     public Events(String desc, String from, String to) {
         super(desc);
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Returns a string representation of the event task
+     *
+     * @return a string to be written in the storage text file
+     */
     public String writeTask() {
         return "E|" + super.writeTask() + "|" + this.from + "|" + this.to;
     }
