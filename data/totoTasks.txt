@@ -1,5 +1,0 @@
-E-1-pop-up store-Aug 20 2026 1400
-D-1-clean room-Feb 28 2026
-E-0-party-Dec 31 2026 2300-Jan 1 2027 0100
-T-0-read book
-E-0-concert-Aug 3 2027 1200-Aug 3 2027 1945

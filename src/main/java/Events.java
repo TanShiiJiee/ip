@@ -9,7 +9,7 @@ public class Events extends Task{
     }
 
     public String writeTask() {
-        return "E-" + super.writeTask() + "-" + this.from + "-" + this.to;
+        return "E|" + super.writeTask() + "|" + this.from + "|" + this.to;
     }
 
     @Override

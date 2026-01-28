@@ -22,24 +22,24 @@ public class Task {
     public void markChecked() {
         String line = "___________________________________________________________ \n";
         this.isChecked = true;
-        Echo echo = new Echo(this.description);
-        echo.printMark(true);
-        System.out.println(this + "\n" + line);
+//        Echo echo = new Echo(this.description);
+//        echo.printMark(true);
+//        System.out.println(this + "\n" + line);
     }
 
     public void unmarkChecked() {
         String line = "___________________________________________________________ \n";
         this.isChecked = false;
-        Echo echo = new Echo(this.description);
-        echo.printMark(false);
-        System.out.println(this + "\n" + line);
+//        Echo echo = new Echo(this.description);
+//        echo.printMark(false);
+//        System.out.println(this + "\n" + line);
     }
 
     public String writeTask() {
         if (isChecked) {
-            return "1-" + getDescription();
+            return "1|" + getDescription();
         } else {
-            return "0-" + getDescription();
+            return "0|" + getDescription();
         }
     }
 

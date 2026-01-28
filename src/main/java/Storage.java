@@ -5,11 +5,12 @@ import java.util.Scanner;
  * Responsible for saving task data to text file.
  * Responsible for loading, updating, and saving tasks.
  */
-public class TaskManager {
+public class Storage {
     private ArrayList<Task> taskArrayList;
-    private final String taskFile = "./data/totoTasks.txt";
-    public TaskManager() {
+    private final String taskFile;
+    public Storage(String filepath) {
         taskArrayList = new ArrayList<>();
+        this.taskFile = filepath;
         loadTasks();
     }
 
@@ -26,7 +27,7 @@ public class TaskManager {
                 Scanner sc = new Scanner(new FileReader(taskFile));
                 while (sc.hasNext()) {
                     String readTask = sc.nextLine();
-                    String[] tmp = readTask.split("-");
+                    String[] tmp = readTask.split("\\|");
                     if (tmp[0].equalsIgnoreCase("T")) {
                         taskArrayList.add(new Todo(tmp[2]));
                         if (Integer.parseInt(tmp[1]) == 1) {
@@ -70,8 +71,8 @@ public class TaskManager {
      */
     public void updateTasks(ArrayList<Task> taskArrayList) {
         try (BufferedWriter bw = new BufferedWriter((new FileWriter(taskFile)))) {
-            for (int i = 0; i < taskArrayList.size(); i++) {
-                bw.write(taskArrayList.get(i).writeTask() + "\n");
+            for (Task task : taskArrayList) {
+                bw.write(task.writeTask() + "\n");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
