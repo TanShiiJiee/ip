@@ -13,7 +13,8 @@ public class Toto {
     private final Ui ui;
     private final Storage storage;
     private Parser parser;
-
+    private ArrayList<Task> itemList;
+    
     /**
      * Initializes Toto chatbot.
      *
@@ -25,11 +26,24 @@ public class Toto {
     }
 
     /**
-     * Run Toto chatbot with user inputs.
+     * Returns a list of tasks containing tasks with the keyword.
+     *
+     * @param keyword the keyword to find.
+     * @return a list of tasks with keyword.
      */
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> addKeyword = new ArrayList<>();
+        for (Task task : itemList) {
+            if (task.containKeyword(keyword)) {
+                addKeyword.add(task);
+            }
+        }
+        return addKeyword;
+    }
+    
     public void run() {
         // Stores array of item names
-        ArrayList<Task> itemList = storage.getTaskArrayList();
+        itemList = storage.getTaskArrayList();
         ui.displayStart();
         Scanner sc = new Scanner(System.in); // Read inputs
 
@@ -97,18 +111,25 @@ public class Toto {
                     storage.saveTasks(itemList.get(itemList.size() - 1));
                     ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
 
+                } else if (tmp[0].equalsIgnoreCase("find")) {
+                    // Handles "find" command
+                    parser.parseFind(tmp, itemList);
+                    ui.printMatchingTasks(findTasks(tmp[1]));
+
+
                 } else {
                     throw new TotoException(line + "Toto doesn't understand :( \n" +
                             "Please input a command from the following: \n" +
                             ui.displayCommands() + "Toto is waiting: "); //not valid command
                 }
-
+                
             } catch (TotoException e) {
                 ui.printError(e.getMessage());
             }
         }
        ui.displayEnd();// Prints exit message
     }
+
     public static void main(String[] args) {
         new Toto("data/tasks.txt").run();
     }

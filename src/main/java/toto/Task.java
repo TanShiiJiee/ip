@@ -1,5 +1,7 @@
 package toto;
 
+import java.util.ArrayList;
+
 /**
  * Represents a task.
  *
@@ -68,6 +70,9 @@ public class Task {
         }
     }
 
+    public boolean containKeyword(String keyword) {
+        return getDescription().contains(keyword);
+    }
 
     @Override
     public String toString() {
