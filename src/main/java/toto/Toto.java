@@ -99,7 +99,7 @@ public class Toto {
 
                 } else {
                     throw new TotoException(line + "Toto doesn't understand :( \n" +
-                        "Please input a command from the following: \n" +
+                            "Please input a command from the following: \n" +
                             ui.displayCommands() + "Toto is waiting: "); //not valid command
                 }
 
