@@ -24,7 +24,7 @@ public class Ui {
     public void displayStart() {
         //Greeting message
         String start = "Hello! I'm Toto! Here is what I can do: \n" + displayCommands()
-                    + "So, what can I do for you? \n";
+                + "So, what can I do for you? \n";
         System.out.println(line + start + line);
     }
 

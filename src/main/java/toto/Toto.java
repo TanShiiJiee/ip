@@ -82,19 +82,9 @@ public class Toto {
 
                 } else {
                     throw new TotoException(line + "Toto doesn't understand :( \n" +
-                        "Please input a command from the following: \n" +
+                            "Please input a command from the following: \n" +
                             ui.displayCommands() + "Toto is waiting: "); //not valid command
                 }
-
-//                    if (!isValidCommand) {
-//
-//                    } else if (isValidFormat) { //correct format
-//                        ui.printAddedTask(); //Task received printed message
-//                        System.out.println(itemList.get(itemList.size() - 1).toString()); //prints task added to list
-//
-//                        System.out.println("Now You have " + itemList.size()
-//                                + " task(s) in the list!" + "\n" + line);
-//                    }
 
             } catch (TotoException e) {
                 ui.printError(e.getMessage());

@@ -11,7 +11,7 @@ public class Parser {
     public void parseList(String[] command) throws TotoException{
         if (command.length > 1) {
             throw new TotoException("Toto doesn't seem to recognize the instruction...\n" +
-                        "Try again:");
+                    "Try again:");
         }
     }
 
@@ -22,7 +22,7 @@ public class Parser {
             }
         } catch (NumberFormatException | IndexOutOfBoundsException i) {
             throw new TotoException("Toto doesn't seem to recognize the instruction...\n" +
-                        "Try again:");
+                    "Try again:");
         }
     }
 
@@ -30,12 +30,12 @@ public class Parser {
         try {
             if (Integer.parseInt(command[1]) < 1 || Integer.parseInt(command[1]) > taskArrayList.size()) {
                 throw new TotoException(line + "Toto can't find the item :( \n" +
-                            "Please try again: ");
+                        "Please try again: ");
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             //Task number stated is not part of list
             throw new TotoException(line + "Toto senses your instruction format is wrong...\n" +
-                        "Please type again in this format(delete <Task Number>): ");
+                    "Please type again in this format(delete <Task Number>): ");
         }
     }
 
