@@ -80,4 +80,12 @@ public class Ui {
     public void printError(String msg) {
         System.out.println(msg);
     }
+
+    public void printMatchingTasks(ArrayList<Task> arrOfItems) {
+        System.out.println(line + "Toto has compiled all the matching tasks: ");
+        for (int i = 0; i < arrOfItems.size(); i++) {
+            System.out.println(i + 1 + "." + arrOfItems.get(i).toString());
+        }
+        System.out.println(line);
+    }
 }

@@ -1,5 +1,7 @@
 package toto;
 
+import java.util.ArrayList;
+
 public class Task {
     private final String description;
     private boolean isChecked;
@@ -48,6 +50,11 @@ public class Task {
             return "0|" + getDescription();
         }
     }
+
+    public boolean containKeyword(String keyword) {
+        return getDescription().contains(keyword);
+    }
+
 
 
     @Override

@@ -93,4 +93,22 @@ public class Parser {
                     "Please use yyyy/M/dd: ");
         }
     }
+
+    /**
+     * Handles "find" command and checks for valid parsing input.
+     *
+     * @param keyword the keyword to search from list.
+     * @param taskArrayList the list of tasks.
+     * @throws TotoException
+     */
+    public void parseFind(String[] keyword, ArrayList<Task> taskArrayList) throws TotoException{
+        try {
+            if (keyword.length <= 1) {
+                throw new TotoException("Toto senses you did not input your keyword to find...\n" +
+                        "Please include your keyword:");
+            }
+        } catch (TotoException e){
+            throw new TotoException(e.getMessage());
+        }
+    }
 }
