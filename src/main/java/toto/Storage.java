@@ -57,6 +57,8 @@ public class Storage {
 
     /**
      * Saves added tasks to text file.
+     *
+     * @param task the task that would be written into the text file.
      */
     public void saveTasks(Task task) {
         try (BufferedWriter bw = new BufferedWriter((new FileWriter(taskFile, true)))) {

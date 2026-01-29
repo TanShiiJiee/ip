@@ -1,13 +1,30 @@
 package toto;
 
+/**
+ * Represents a task.
+ *
+ * @version 1.0
+ * @author Shi Jie Tan
+ */
 public class Task {
     private final String description;
     private boolean isChecked;
+    /**
+     * Initializes a task with a description.
+     * Task is not mark as checked by default.
+     *
+     * @param desc the description of the task.
+     */
     public Task(String desc) {
         this.description = desc;
         this.isChecked = false;
     }
 
+    /**
+     * Returns whether this task has been checked.
+     *
+     * @return true if tasks is checked, false otherwise.
+     */
     public boolean isChecked() {
         return isChecked;
     }
@@ -24,23 +41,25 @@ public class Task {
         return this.description;
     }
 
-
+    /**
+     * Mark the task as checked.
+     */
     public void markChecked() {
-        String line = "___________________________________________________________ \n";
         this.isChecked = true;
-//        Echo echo = new Echo(this.description);
-//        echo.printMark(true);
-//        System.out.println(this + "\n" + line);
     }
 
+    /**
+     * Mark the task as unchecked.
+     */
     public void unmarkChecked() {
-        String line = "___________________________________________________________ \n";
         this.isChecked = false;
-//        Echo echo = new Echo(this.description);
-//        echo.printMark(false);
-//        System.out.println(this + "\n" + line);
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return a partial string to be written in the storage text file.
+     */
     public String writeTask() {
         if (isChecked) {
             return "1|" + getDescription();
@@ -52,7 +71,6 @@ public class Task {
 
     @Override
     public String toString() {
-
         return "[" + getMark() + "] " + this.description;
     }
 }

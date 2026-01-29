@@ -6,6 +6,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Handles making sense of the user command.
+ *
+ * @version 1.0
+ * @author Shi Jie Tan
+ */
 public class Parser {
     private final String line = "___________________________________________________________ \n";
     public void parseList(String[] command) throws TotoException{
@@ -15,6 +21,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the "mark" command and validates the task index.
+     *
+     * @param command represents the split array of commands.
+     * @param taskArrayList the list of tasks.
+     * @throws TotoException if the task number input is invalid.
+     */
     public void parseMark(String[] command, ArrayList<Task> taskArrayList) throws TotoException{
         try{
             if (Integer.parseInt(command[1]) < 1 || Integer.parseInt(command[1]) > taskArrayList.size()) {
@@ -26,6 +39,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the "delete" command and validates input.
+     *
+     * @param command represents the split array of commands.
+     * @param taskArrayList the list of tasks.
+     * @throws TotoException if the task input command is invalid.
+     */
     public void parseDelete(String[] command, ArrayList<Task> taskArrayList) throws TotoException{
         try {
             if (Integer.parseInt(command[1]) < 1 || Integer.parseInt(command[1]) > taskArrayList.size()) {
@@ -39,6 +59,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the "todo" command and validates input.
+     *
+     * @param command represents the split array of commands.
+     * @throws TotoException if the task input command is invalid.
+     */
     public void parseTodo(String[] command) throws TotoException {
         if (command.length <= 1) {
             throw new TotoException(line + "Toto senses you did not include your task...\n" +
@@ -46,7 +72,14 @@ public class Parser {
         }
     }
 
-
+    /**
+     * Parses the "event" command and validates input.
+     * Changes date format from string to LocalDateTime.
+     *
+     * @param command represents the split array of commands.
+     * @param taskArrayList the list of tasks.
+     * @throws TotoException if the task input command is invalid.
+     */
     public void parseEvent(String[] command, ArrayList<Task> taskArrayList ) throws TotoException {
         try {
             String desc = command[1].split(" /")[0].trim();
@@ -72,7 +105,14 @@ public class Parser {
                     "Please use yyyy/M/dd HHmm: ");
         }
     }
-
+    /**
+     * Parses the "deadline" command and validates input.
+     * Changes date format from string to LocalDate.
+     *
+     * @param command represents the split array of commands.
+     * @param taskArrayList the list of tasks.
+     * @throws TotoException if the task input command is invalid.
+     */
     public void parseDeadline(String[] command, ArrayList<Task> taskArrayList) throws TotoException {
         try {
             String desc = command[1].split(" /")[0].trim();
