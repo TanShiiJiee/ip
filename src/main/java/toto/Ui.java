@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Ui {
-    private final String line = "___________________________________________________________ \n";
+    //private final String line = "___________________________________________________________ \n";
 
     /**
      * Displays list of commands available.
@@ -32,65 +32,70 @@ public class Ui {
 
     /**
      * Displays start greeting to users.
+     * @return the string to be displayed at the start.
      */
-    public void displayStart() {
+    public String displayStart() {
         //Greeting message
         String start = "Hello! I'm Toto! Here is what I can do: \n" + displayCommands()
                 + "So, what can I do for you? \n";
-        System.out.println(line + start + line);
+        return start;
     }
     /**
      * Displays end message to users.
+     * @return the string to be displayed at the end.
      */
-    public void displayEnd() {
+    public String displayEnd() {
         // Goodbye message
         String end = "Bye bye! Hope to see you again soon!\n";
-        System.out.println(line + end + line);
+        return end;
     }
 
     /**
      * Displays message that task has been marked.
      *
      * @param task the task that has been marked.
+     * @return the task that has been checked with a message.
      */
-    public void displayMarkCheckedMessage(Task task) {
-        printMark(true);
-        System.out.println(task.toString() + "\n" + line);
+    public String displayMarkCheckedMessage(Task task) {
+        return printMark(true) + task.toString() + "\n";
     }
 
     /**
      * Displays message that task has been unmarked.
      *
      * @param task the task that has been unmarked.
+     * @return the task that has been unchecked with a message.
      */
-    public void displayUnmarkCheckedMessage(Task task) {
-        printMark(false);
-        System.out.println(task.toString() + "\n" + line);
+    public String displayUnmarkCheckedMessage(Task task) {
+        return printMark(false) + task.toString() + "\n";
     }
 
     /**
      * Displays message that task has been deleted.
+     *
+     * @return the message to displayed when deleted.
      */
-    public void printDeleted() {
-        System.out.println(line + "Task Deleted! Toto had removed this task:");
+    public String printDeleted() {
+        return "Task Deleted! Toto had removed this task:\n";
     }
 
     /**
      * Displays message when task is marked or unmarked.
      *
      * @param mark true if task is marked, false otherwise.
+     * @return the string to be displayed when task is marked or unmarked.
      */
-    public void printMark(boolean mark) {
+    public String printMark(boolean mark) {
         String markMsg;
         //String checkedMark;
         if (mark) {
-            markMsg = "Done! Toto is very happy :)";
+            markMsg = "Done! Toto is very happy :)\n";
             //checkedMark = "[X] ";
         } else {
-            markMsg = "Oh no! Back to work!";
+            markMsg = "Oh no! Back to work!\n";
             // = "[ ] ";
         }
-        System.out.println(line + markMsg);
+        return markMsg;
     }
 
     /**
@@ -98,47 +103,52 @@ public class Ui {
      *
      * @param task the task that has been added to the list.
      * @param size the size of the task list.
+     * @return the task that has been added.
      */
-    public void printAddedTask(Task task, int size) {
-        System.out.println(line + "Task received! Toto had added this task:");
-        System.out.println(task.toString()); //prints task added to list
-        System.out.println("Now You have " + size
-                + " task(s) in the list!" + "\n" + line);
+    public String printAddedTask(Task task, int size) {
+        String tmp = "Task received! Toto had added this task:\n"
+                + task.toString()
+                + "\nNow You have " + size
+                + " task(s) in the list!"
+                + "\n";
+        return tmp;
     }
 
     /**
      * Displays the list of task that has been added before.
      *
      * @param arrOfItems the full list of tasks.
+     * @return the string of tasks.
      */
-    public void printItem(ArrayList<Task> arrOfItems) {
-        System.out.println(line);
-        System.out.println("Task delivery! Toto's got your back:");
+    public String printItem(ArrayList<Task> arrOfItems) {
+        StringBuilder itemStatement = new StringBuilder("Task delivery! Toto's got your back:\n");
         for (int i = 0; i < arrOfItems.size(); i++) {
-            System.out.println(i + 1 + "." + arrOfItems.get(i).toString());
+            itemStatement.append(i + 1).append(". ").append(arrOfItems.get(i).toString()).append("\n");
         }
-        System.out.println(line);
+        return itemStatement.toString();
     }
 
     /**
      * Displays the error message.
      *
      * @param msg the error message to be printed.
+     * @return the error message string.
      */
-    public void printError(String msg) {
-        System.out.println(msg);
+    public String printError(String msg) {
+        return msg;
     }
 
     /**
      * Displays all matching tasks with keywords.
      *
      * @param arrOfItems the full list of tasks.
+     * @return the string of tasks with matching keywords.
      */
-    public void printMatchingTasks(ArrayList<Task> arrOfItems) {
-        System.out.println(line + "Toto has compiled all the matching tasks: ");
+    public String printMatchingTasks(ArrayList<Task> arrOfItems) {
+        StringBuilder matchTasks = new StringBuilder("Toto has compiled all the matching tasks: \n");
         for (int i = 0; i < arrOfItems.size(); i++) {
-            System.out.println(i + 1 + "." + arrOfItems.get(i).toString());
+            matchTasks.append(i + 1).append(". ").append(arrOfItems.get(i).toString()).append("\n");
         }
-        System.out.println(line);
+        return matchTasks.toString();
     }
 }
