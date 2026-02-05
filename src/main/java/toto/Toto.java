@@ -22,6 +22,8 @@ public class Toto {
     public Toto(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        itemList = storage.getTaskArrayList();
+        parser = new Parser();
     }
 
     /**
@@ -41,7 +43,7 @@ public class Toto {
     }
 
     /**
-     * Run the program
+     * Run the program for CLI
      */
     public void run() {
         // Stores array of item names
@@ -86,7 +88,7 @@ public class Toto {
                 } else if (tmp[0].equalsIgnoreCase("delete")) {
                     parser.parseDelete(tmp, itemList);
                     ui.printDeleted(); //Task Deleted printed message
-                    System.out.println(itemList.get(Integer.parseInt(tmp[1]) - 1).toString()); //prints deleted task
+                    //System.out.println(itemList.get(Integer.parseInt(tmp[1]) - 1).toString()); //prints deleted task
                     itemList.remove(Integer.parseInt(tmp[1]) - 1); //remove task from arrayList
                     storage.updateTasks(itemList);
 
@@ -129,6 +131,89 @@ public class Toto {
         }
         ui.displayEnd(); // Prints exit message
     }
+
+    public String getStart() {
+        return ui.displayStart();
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        String[] tmp = input.split(" ", 2);
+        try {
+            //String line = "___________________________________________________________ \n";
+            if (tmp[0].equalsIgnoreCase("bye")) { // User enters "bye" command then chatbot exits
+                return ui.displayEnd();
+            } else if (tmp[0].equalsIgnoreCase("list")) {
+                // User enters "list" command then print ArrayList
+                parser.parseList(tmp);
+                return ui.printItem(itemList); // Print List of Items in Array List
+
+
+            } else if (tmp[0].equalsIgnoreCase("mark")) {
+                // Mark the task
+                parser.parseMark(tmp, itemList);
+                itemList.get(Integer.parseInt(tmp[1]) - 1).markChecked();
+                storage.updateTasks(itemList);
+
+                // Update text file with updated changes
+                return ui.displayMarkCheckedMessage(itemList.get(Integer.parseInt(tmp[1]) - 1));
+
+            } else if (tmp[0].equalsIgnoreCase("unmark")) { // Unmark the task
+                // Mark the task
+                parser.parseMark(tmp, itemList);
+                itemList.get(Integer.parseInt(tmp[1]) - 1).unmarkChecked();
+                storage.updateTasks(itemList);
+
+                // Update text file with updated changes
+                return ui.displayUnmarkCheckedMessage(itemList.get(Integer.parseInt(tmp[1]) - 1));
+
+            } else if (tmp[0].equalsIgnoreCase("delete")) {
+                parser.parseDelete(tmp, itemList);
+                String delItem = itemList.get(Integer.parseInt(tmp[1]) - 1).toString(); //prints deleted task
+                itemList.remove(Integer.parseInt(tmp[1]) - 1); //remove task from arrayList
+                storage.updateTasks(itemList);
+                return ui.printDeleted() + delItem; //Task Deleted printed message
+
+            } else if (tmp[0].equalsIgnoreCase("todo")) {
+                parser.parseTodo(tmp);
+                itemList.add(new Todo(tmp[1])); //Add todo into ArrayList
+
+                // Get last added item to be added to text file
+                storage.saveTasks(itemList.get(itemList.size() - 1));
+
+                return ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
+
+            } else if (tmp[0].equalsIgnoreCase("event")) {
+                // Handles "Event" command
+                // Get last added item to be added to text file
+                parser.parseEvent(tmp, itemList);
+                storage.saveTasks(itemList.get(itemList.size() - 1));
+                return ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
+
+            } else if (tmp[0].equalsIgnoreCase("deadline")) {
+                // Handles "deadline" command
+                // Get last added item to be added to text file
+                parser.parseDeadline(tmp, itemList);
+                storage.saveTasks(itemList.get(itemList.size() - 1));
+                return ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
+
+            } else if (tmp[0].equalsIgnoreCase("find")) {
+                // Handles "find" command
+                parser.parseFind(tmp);
+                return ui.printMatchingTasks(findTasks(tmp[1]));
+
+            } else {
+                throw new TotoException("Toto doesn't understand :( \n"
+                        + "Please input a command from the following: \n"
+                        + ui.displayCommands()); //not valid command
+            }
+        } catch (TotoException e) {
+            return ui.printError(e.getMessage());
+        }
+    }
+
 
     public static void main(String[] args) {
         new Toto("data/tasks.txt").run();
