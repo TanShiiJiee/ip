@@ -6,15 +6,14 @@ import java.util.Scanner;
 /**
  * Represents Toto chatbot.
  *
- * @version 1.0
  * @author Shi Jie Tan
+ * @version 1.0
  */
 public class Toto {
     private final Ui ui;
     private final Storage storage;
     private Parser parser;
     private ArrayList<Task> itemList;
-    
     /**
      * Initializes Toto chatbot.
      *
@@ -40,7 +39,10 @@ public class Toto {
         }
         return addKeyword;
     }
-    
+
+    /**
+     * Run the program
+     */
     public void run() {
         // Stores array of item names
         itemList = storage.getTaskArrayList();
@@ -88,7 +90,7 @@ public class Toto {
                     itemList.remove(Integer.parseInt(tmp[1]) - 1); //remove task from arrayList
                     storage.updateTasks(itemList);
 
-                } else if (tmp[0].equalsIgnoreCase("todo")){
+                } else if (tmp[0].equalsIgnoreCase("todo")) {
                     parser.parseTodo(tmp);
                     itemList.add(new Todo(tmp[1])); //Add todo into ArrayList
 
@@ -113,21 +115,19 @@ public class Toto {
 
                 } else if (tmp[0].equalsIgnoreCase("find")) {
                     // Handles "find" command
-                    parser.parseFind(tmp, itemList);
+                    parser.parseFind(tmp);
                     ui.printMatchingTasks(findTasks(tmp[1]));
 
-
                 } else {
-                    throw new TotoException(line + "Toto doesn't understand :( \n" +
-                            "Please input a command from the following: \n" +
-                            ui.displayCommands() + "Toto is waiting: "); //not valid command
+                    throw new TotoException(line + "Toto doesn't understand :( \n"
+                            + "Please input a command from the following: \n"
+                            + ui.displayCommands() + "Toto is waiting: "); //not valid command
                 }
-                
             } catch (TotoException e) {
                 ui.printError(e.getMessage());
             }
         }
-       ui.displayEnd();// Prints exit message
+        ui.displayEnd(); // Prints exit message
     }
 
     public static void main(String[] args) {

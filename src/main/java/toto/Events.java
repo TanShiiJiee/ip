@@ -3,10 +3,10 @@ package toto;
 /**
  * Represents an event task.
  *
- * @version 1.0
  * @author Shi Jie Tan
+ * @version 1.0
  */
-public class Events extends Task{
+public class Events extends Task {
     private final String from;
     private final String to;
 

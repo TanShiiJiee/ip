@@ -1,6 +1,9 @@
 package toto;
 
-public class TotoException extends Exception{
+/**
+ * The exception for Toto.
+ */
+public class TotoException extends Exception {
     public TotoException(String message) {
         super(message);
     }

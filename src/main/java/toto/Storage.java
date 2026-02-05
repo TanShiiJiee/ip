@@ -1,6 +1,10 @@
 package toto;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -10,6 +14,12 @@ import java.util.Scanner;
 public class Storage {
     private ArrayList<Task> taskArrayList;
     private final String taskFile;
+
+    /**
+     * Stores data in file.
+     *
+     * @param filepath the filepath to store data.
+     */
     public Storage(String filepath) {
         taskArrayList = new ArrayList<>();
         this.taskFile = filepath;

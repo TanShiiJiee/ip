@@ -5,11 +5,11 @@ import java.util.ArrayList;
 /**
  * Handle printing of outputs.
  *
- * @version 1.0
  * @author Shi Jie Tan
+ * @version 1.0
  */
 public class Ui {
-    private final String line =  "___________________________________________________________ \n";
+    private final String line = "___________________________________________________________ \n";
 
     /**
      * Displays list of commands available.
@@ -18,14 +18,14 @@ public class Ui {
      */
     public String displayCommands() {
         // Commands user can input
-        String commandsAvail = "- list\n" +
-                "- mark <Task Number>\n" +
-                "- unmark <Task Number>\n" +
-                "- delete <Task Number>\n" +
-                "- todo <Task>\n" +
-                "- deadline <Task Name> /by <yyyy/M/dd>\n" +
-                "- event <Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>\n" +
-                "- bye \n";
+        String commandsAvail = "- list\n"
+                + "- mark <Task Number>\n"
+                + "- unmark <Task Number>\n"
+                + "- delete <Task Number>\n"
+                + "- todo <Task>\n"
+                + "- deadline <Task Name> /by <yyyy/M/dd>\n"
+                + "- event <Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>\n"
+                + "- bye \n";
 
         return commandsAvail;
     }
@@ -129,6 +129,11 @@ public class Ui {
         System.out.println(msg);
     }
 
+    /**
+     * Displays all matching tasks with keywords.
+     *
+     * @param arrOfItems the full list of tasks.
+     */
     public void printMatchingTasks(ArrayList<Task> arrOfItems) {
         System.out.println(line + "Toto has compiled all the matching tasks: ");
         for (int i = 0; i < arrOfItems.size(); i++) {

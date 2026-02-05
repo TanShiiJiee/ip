@@ -3,10 +3,10 @@ package toto;
 /**
  * Represents a deadline task.
  *
- * @version 1.0
  * @author Shi Jie Tan
+ * @version 1.0
  */
-public class Deadlines extends Task{
+public class Deadlines extends Task {
     private final String by;
 
     /**

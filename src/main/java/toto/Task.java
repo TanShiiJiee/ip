@@ -1,12 +1,10 @@
 package toto;
 
-import java.util.ArrayList;
-
 /**
  * Represents a task.
  *
- * @version 1.0
  * @author Shi Jie Tan
+ * @version 1.0
  */
 public class Task {
     private final String description;

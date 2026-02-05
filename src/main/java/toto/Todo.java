@@ -3,10 +3,10 @@ package toto;
 /**
  * Represents a todo task.
  *
- * @version 1.0
  * @author Shi Jie Tan
+ * @version 1.0
  */
-public class Todo extends Task{
+public class Todo extends Task {
     /**
      * Initializes a todo task with a description.
      *
