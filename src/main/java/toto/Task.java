@@ -16,6 +16,7 @@ public class Task {
      * @param desc the description of the task.
      */
     public Task(String desc) {
+        assert desc != null : "desc should not be null";
         this.description = desc;
         this.isChecked = false;
     }
@@ -69,6 +70,7 @@ public class Task {
     }
 
     public boolean containKeyword(String keyword) {
+        assert keyword != null : "keyword should not be null";
         return getDescription().contains(keyword);
     }
 

@@ -96,6 +96,7 @@ public class Parser {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
             LocalDateTime localDateTimeFrom = LocalDateTime.parse(frm, dateTimeFormatter);
             LocalDateTime localDateTimeTo = LocalDateTime.parse(to, dateTimeFormatter);
+            assert localDateTimeFrom.isBefore(localDateTimeTo) : "From must be before to";
 
             //Add event into ArrayList with formatted Date Time
             taskArrayList.add(new Events(desc,
