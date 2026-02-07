@@ -1,10 +1,10 @@
 .label {
-    -fx-background-color: linear-gradient(to bottom right, #f9f3e1, #ffebad);
+    -fx-background-color: linear-gradient(to bottom right, #749faf, #87a0b8);
     -fx-border-color: #403c2e #332e1d #1f1907;
     -fx-border-width: 3px;
     -fx-background-radius: 0.5em 0.5em 0 0.5em;
     -fx-border-radius: 0.5em 0.5em 0 0.5em;
-    -fx-padding: 6px;
+    -fx-padding: 8px;
     -fx-border-insets: 0px 7px 0px 7px;
     -fx-background-insets: 0px 7px 0px 7px;
 }
@@ -12,11 +12,12 @@
 .reply-label {
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+    -fx-background-color: linear-gradient(to bottom right, #6e6f9a, #8a87b8);
 }
 
 /* Paste this below reply-label */
 .add-label {
-    -fx-background-color: yellow;
+    -fx-background-color: #c0dbff;
 }
 
 .marked-label {

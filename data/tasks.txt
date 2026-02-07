@@ -1,8 +1,0 @@
-T|0|make list
-T|0|homework
-D|1|Assignment 1|Jan 28 2026
-T|0|read
-D|0|project|Jan 20 2026
-T|0|read book
-E|0|cs2103 lecture|Mar 10 2026 1400|Mar 10 2026 1600
-D|0|homework|Mar 10 2026

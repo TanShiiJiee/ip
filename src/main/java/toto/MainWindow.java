@@ -24,8 +24,8 @@ public class MainWindow extends AnchorPane {
 
     private Toto toto;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaPerson.png"));
+    private Image totoImage = new Image(this.getClass().getResourceAsStream("/images/DaToto.png"));
 
     /**
      * Handles initialization.
@@ -40,7 +40,7 @@ public class MainWindow extends AnchorPane {
     public void setToto(Toto t) {
         toto = t;
         String totoStart = toto.getStart();
-        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(totoStart, dukeImage));
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(totoStart, totoImage));
     }
 
     /**
@@ -53,7 +53,7 @@ public class MainWindow extends AnchorPane {
         String response = toto.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, totoImage)
         );
         userInput.clear();
     }
