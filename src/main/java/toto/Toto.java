@@ -19,6 +19,7 @@ public class Toto {
      * @param filePath the path to store the list of task.
      */
     public Toto(String filePath) {
+        assert filePath != null : "File path cannot be null";
         ui = new Ui();
         storage = new Storage(filePath);
         itemList = storage.getTaskArrayList();

@@ -16,6 +16,7 @@ public class Task {
      * @param desc the description of the task.
      */
     public Task(String desc) {
+        assert desc != null : "desc should not be null";
         this.description = desc;
         this.isChecked = false;
     }
@@ -68,7 +69,14 @@ public class Task {
         }
     }
 
+    /**
+     * Find keyword in description
+     *
+     * @param keyword the keyword to find.
+     * @return true if description of task  has the keyword, false otherwise
+     */
     public boolean containKeyword(String keyword) {
+        assert keyword != null : "keyword should not be null";
         return getDescription().contains(keyword);
     }
 
