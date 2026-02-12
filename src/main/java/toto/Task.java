@@ -68,7 +68,7 @@ public class Task {
         }
     }
 
-    public boolean containKeyword(String keyword) {
+    public boolean checkKeyword(String keyword) {
         return getDescription().contains(keyword);
     }
 

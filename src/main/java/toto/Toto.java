@@ -34,7 +34,7 @@ public class Toto {
     public ArrayList<Task> findTasks(String keyword) {
         ArrayList<Task> addKeyword = new ArrayList<>();
         for (Task task : itemList) {
-            if (task.containKeyword(keyword)) {
+            if (task.checkKeyword(keyword)) {
                 addKeyword.add(task);
             }
         }
@@ -57,8 +57,8 @@ public class Toto {
             } else if (tmp[0].equalsIgnoreCase("list")) {
                 // User enters "list" command then print ArrayList
                 parser.parseList(tmp);
-                return ui.printItem(itemList); // Print List of Items in Array List
 
+                return ui.printItem(itemList);
 
             } else if (tmp[0].equalsIgnoreCase("mark")) {
                 // Mark the task
@@ -82,6 +82,7 @@ public class Toto {
                 parser.parseDelete(tmp, itemList);
                 String delItem = itemList.get(Integer.parseInt(tmp[1]) - 1).toString(); //prints deleted task
                 itemList.remove(Integer.parseInt(tmp[1]) - 1); //remove task from arrayList
+
                 storage.updateTasks(itemList);
                 return ui.printDeleted() + delItem; //Task Deleted printed message
 
@@ -95,21 +96,16 @@ public class Toto {
                 return ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
 
             } else if (tmp[0].equalsIgnoreCase("event")) {
-                // Handles "Event" command
-                // Get last added item to be added to text file
                 parser.parseEvent(tmp, itemList);
                 storage.saveTasks(itemList.get(itemList.size() - 1));
                 return ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
 
             } else if (tmp[0].equalsIgnoreCase("deadline")) {
-                // Handles "deadline" command
-                // Get last added item to be added to text file
                 parser.parseDeadline(tmp, itemList);
                 storage.saveTasks(itemList.get(itemList.size() - 1));
                 return ui.printAddedTask(itemList.get(itemList.size() - 1), itemList.size());
 
             } else if (tmp[0].equalsIgnoreCase("find")) {
-                // Handles "find" command
                 parser.parseFind(tmp);
                 return ui.printMatchingTasks(findTasks(tmp[1]));
 

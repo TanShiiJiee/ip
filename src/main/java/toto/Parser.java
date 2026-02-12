@@ -13,7 +13,10 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Parser {
-    //private final String line = "___________________________________________________________ \n";
+    private final String invalidCommandMessage = "Toto doesn't seem to recognize the instruction...\n"
+            + "Try again!";
+    private final String invalidItemNumber = "Toto can't find the item :( \nPlease try again";
+    private final String invalidFormat = "Toto senses your instruction format is wrong...\n";
 
     /**
      * Parses the list command.
@@ -23,8 +26,7 @@ public class Parser {
      */
     public void parseList(String[] command) throws TotoException {
         if (command.length > 1) {
-            throw new TotoException("Toto doesn't seem to recognize the instruction...\n"
-                    + "Try again!");
+            throw new TotoException(invalidCommandMessage);
         }
     }
 
@@ -38,11 +40,10 @@ public class Parser {
     public void parseMark(String[] command, ArrayList<Task> taskArrayList) throws TotoException {
         try {
             if (Integer.parseInt(command[1]) < 1 || Integer.parseInt(command[1]) > taskArrayList.size()) {
-                throw new TotoException("Toto can't find the item :( \nPlease try again");
+                throw new TotoException(invalidItemNumber);
             }
         } catch (NumberFormatException | IndexOutOfBoundsException i) {
-            throw new TotoException("Toto doesn't seem to recognize the instruction...\n"
-                    + "Try again:");
+            throw new TotoException(invalidCommandMessage);
         }
     }
 
@@ -56,13 +57,11 @@ public class Parser {
     public void parseDelete(String[] command, ArrayList<Task> taskArrayList) throws TotoException {
         try {
             if (Integer.parseInt(command[1]) < 1 || Integer.parseInt(command[1]) > taskArrayList.size()) {
-                throw new TotoException("Toto can't find the item :( \n"
-                        + "Please try again!");
+                throw new TotoException(invalidItemNumber);
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             //Task number stated is not part of list
-            throw new TotoException("Toto senses your instruction format is wrong...\n"
-                    + "Please type again in this format(delete <Task Number>)");
+            throw new TotoException(invalidFormat + "Please type again in this format(delete <Task Number>)");
         }
     }
 
@@ -74,8 +73,7 @@ public class Parser {
      */
     public void parseTodo(String[] command) throws TotoException {
         if (command.length <= 1) {
-            throw new TotoException("Toto senses you did not include your task...\n"
-                    + "Please include your task as well...");
+            throw new TotoException(invalidFormat + "Please include your task as well...");
         }
     }
 
@@ -89,27 +87,29 @@ public class Parser {
      */
     public void parseEvent(String[] command, ArrayList<Task> taskArrayList) throws TotoException {
         try {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
+
             String desc = command[1].split(" /")[0].trim();
+
             String frm = command[1].split(" /from")[1].trim();
             frm = frm.split(" /to")[0].trim();
-            String to = command[1].split(" /to")[1].trim();
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
             LocalDateTime localDateTimeFrom = LocalDateTime.parse(frm, dateTimeFormatter);
+
+            String to = command[1].split(" /to")[1].trim();
             LocalDateTime localDateTimeTo = LocalDateTime.parse(to, dateTimeFormatter);
 
             //Add event into ArrayList with formatted Date Time
-            taskArrayList.add(new Events(desc,
+            taskArrayList.add(new Event(desc,
                     localDateTimeFrom.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm")),
                     localDateTimeTo.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"))));
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new TotoException("Toto senses your task format is wrong...\n"
+            throw new TotoException(invalidFormat
                     + "Please type again in this format(event <Task Name> /from "
                     + "<yyyy/M/dd HHmm> /to <yyyy/M/dd HHmm>) ");
         } catch (DateTimeParseException e) {
-            throw new TotoException("Invalid date-time format :( \n"
-                    + "Please use yyyy/M/dd HHmm");
+            throw new TotoException("Invalid date-time format :( \nPlease use yyyy/M/dd HHmm");
         }
     }
     /**
@@ -129,15 +129,14 @@ public class Parser {
             LocalDate localDate = LocalDate.parse(by, dateTimeFormatter);
 
             //Add deadline into ArrayList
-            taskArrayList.add(new Deadlines(desc,
+            taskArrayList.add(new Deadline(desc,
                     localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new TotoException("Toto senses your task format is wrong...\n"
+            throw new TotoException(invalidFormat
                     + "Please type again in this format(deadline <Task Name> /by <yyyy/M/dd>) ");
         } catch (DateTimeParseException e) {
-            throw new TotoException("Invalid date format :( \n"
-                    + "Please use yyyy/M/dd");
+            throw new TotoException("Invalid date format :( \nPlease use yyyy/M/dd");
         }
     }
 
@@ -150,7 +149,7 @@ public class Parser {
     public void parseFind(String[] keyword) throws TotoException {
         try {
             if (keyword.length <= 1) {
-                throw new TotoException("Toto senses you did not input your keyword to find...\n"
+                throw new TotoException(invalidFormat
                         + "Please include your keyword");
             }
         } catch (TotoException e) {

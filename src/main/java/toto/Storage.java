@@ -47,12 +47,12 @@ public class Storage {
                         }
 
                     } else if (tmp[0].equalsIgnoreCase("D")) {
-                        taskArrayList.add(new Deadlines(tmp[2], tmp[3]));
+                        taskArrayList.add(new Deadline(tmp[2], tmp[3]));
                         if (Integer.parseInt(tmp[1]) == 1) {
                             taskArrayList.get(taskArrayList.size() - 1).markChecked();
                         }
                     } else if (tmp[0].equalsIgnoreCase("E")) {
-                        taskArrayList.add(new Events(tmp[2], tmp[3], tmp[4]));
+                        taskArrayList.add(new Event(tmp[2], tmp[3], tmp[4]));
                         if (Integer.parseInt(tmp[1]) == 1) {
                             taskArrayList.get(taskArrayList.size() - 1).markChecked();
                         }
