@@ -6,7 +6,7 @@ package toto;
  * @author Shi Jie Tan
  * @version 1.0
  */
-public class Deadlines extends Task {
+public class Deadline extends Task {
     private final String by;
 
     /**
@@ -15,7 +15,7 @@ public class Deadlines extends Task {
      * @param desc the description of the task.
      * @param by the due date of the task.
      */
-    public Deadlines(String desc, String by) {
+    public Deadline(String desc, String by) {
         super(desc);
         this.by = by;
     }
@@ -32,7 +32,6 @@ public class Deadlines extends Task {
 
     @Override
     public String toString() {
-        String line = "___________________________________________________________ \n";
         return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
 }

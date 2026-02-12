@@ -6,7 +6,7 @@ package toto;
  * @author Shi Jie Tan
  * @version 1.0
  */
-public class Events extends Task {
+public class Event extends Task {
     private final String from;
     private final String to;
 
@@ -17,7 +17,7 @@ public class Events extends Task {
      * @param from the start date and time of the task.
      * @param to the end date and time of the task.
      */
-    public Events(String desc, String from, String to) {
+    public Event(String desc, String from, String to) {
         super(desc);
         this.from = from;
         this.to = to;
@@ -34,7 +34,6 @@ public class Events extends Task {
 
     @Override
     public String toString() {
-        String line = "___________________________________________________________ \n";
         return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
     }
 }

@@ -9,8 +9,6 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Ui {
-    //private final String line = "___________________________________________________________ \n";
-
     /**
      * Displays list of commands available.
      *
@@ -82,13 +80,13 @@ public class Ui {
     /**
      * Displays message when task is marked or unmarked.
      *
-     * @param mark true if task is marked, false otherwise.
+     * @param isMark true if task is marked, false otherwise.
      * @return the string to be displayed when task is marked or unmarked.
      */
-    public String printMark(boolean mark) {
+    public String printMark(boolean isMark) {
         String markMsg;
         //String checkedMark;
-        if (mark) {
+        if (isMark) {
             markMsg = "Done! Toto is very happy :)\n";
             //checkedMark = "[X] ";
         } else {
