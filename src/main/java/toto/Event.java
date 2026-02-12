@@ -1,5 +1,9 @@
 package toto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents an event task.
  *
@@ -21,6 +25,23 @@ public class Event extends Task {
         super(desc);
         this.from = from;
         this.to = to;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "E";
+    }
+
+    @Override
+    public boolean isOnDate(LocalDate date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HHmm");
+        LocalDateTime localDateTimeFrom = LocalDateTime.parse(from, dateTimeFormatter);
+        LocalDateTime localDateTimeTo = LocalDateTime.parse(to, dateTimeFormatter);
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(23, 59, 59);
+
+        boolean overlaps = !localDateTimeTo.isBefore(startOfDay) && !localDateTimeFrom.isAfter(endOfDay);
+        return overlaps && !this.isChecked();
     }
 
     /**

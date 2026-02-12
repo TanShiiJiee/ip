@@ -108,9 +108,9 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new TotoException(invalidFormat
                     + "Please type again in this format(event <Task Name> /from "
-                    + "<yyyy/M/dd HHmm> /to <yyyy/M/dd HHmm>) ");
+                    + "<yyyy/M/d HHmm> /to <yyyy/M/d HHmm>) ");
         } catch (DateTimeParseException e) {
-            throw new TotoException("Invalid date-time format :( \nPlease use yyyy/M/dd HHmm");
+            throw new TotoException("Invalid date-time format :( \nPlease use yyyy/M/d HHmm");
         }
     }
     /**
@@ -135,9 +135,9 @@ public class Parser {
 
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new TotoException(invalidFormat
-                    + "Please type again in this format(deadline <Task Name> /by <yyyy/M/dd>) ");
+                    + "Please type again in this format(deadline <Task Name> /by <yyyy/M/d>) ");
         } catch (DateTimeParseException e) {
-            throw new TotoException("Invalid date format :( \nPlease use yyyy/M/dd");
+            throw new TotoException("Invalid date format :( \nPlease use yyyy/M/d");
         }
     }
 
@@ -153,6 +153,33 @@ public class Parser {
                 throw new TotoException(invalidFormat
                         + "Please include your keyword");
             }
+        } catch (TotoException e) {
+            throw new TotoException(e.getMessage());
+        }
+    }
+
+    /**
+     * Handles "view" command and checks for valid parsing input.
+     *
+     * @param command represents the split array of commands.
+     * @param taskArrayList the list of tasks.
+     * @return the StringBuilder containing the formatted table
+     * @throws TotoException if command is invalid
+     */
+    public StringBuilder parseViewSchedule(String[] command, ArrayList<Task> taskArrayList) throws TotoException {
+        try {
+            if (command.length != 2) {
+                throw new TotoException(invalidFormat + "Please type again in this format(view <yyyy/M/d>)");
+            }
+
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/M/d");
+            LocalDate localDate = LocalDate.parse(command[1].trim(), dateTimeFormatter);
+            String formatted = localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+            ViewSchedule viewSchedule = new ViewSchedule(formatted, taskArrayList);
+            return viewSchedule.displayFullTable();
+        } catch (DateTimeParseException e) {
+            throw new TotoException("Invalid date format :( \nPlease use yyyy/M/d");
         } catch (TotoException e) {
             throw new TotoException(e.getMessage());
         }

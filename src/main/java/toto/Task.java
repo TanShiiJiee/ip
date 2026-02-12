@@ -1,5 +1,7 @@
 package toto;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task.
  *
@@ -37,6 +39,10 @@ public class Task {
         }
     }
 
+    public String getTaskType() {
+        return "Z";
+    }
+
     public String getDescription() {
         return this.description;
     }
@@ -70,6 +76,11 @@ public class Task {
 
     public boolean checkKeyword(String keyword) {
         return getDescription().contains(keyword);
+    }
+
+
+    public boolean isOnDate(LocalDate date) {
+        return true;
     }
 
     @Override

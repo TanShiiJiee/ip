@@ -1,5 +1,9 @@
 package toto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a deadline task.
  *
@@ -18,6 +22,21 @@ public class Deadline extends Task {
     public Deadline(String desc, String by) {
         super(desc);
         this.by = by;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "D";
+    }
+
+    @Override
+    public boolean isOnDate(LocalDate date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+        LocalDateTime localDateTime = LocalDate.parse(by, dateTimeFormatter).atStartOfDay();
+
+        LocalDateTime endOfDay = date.atTime(23, 59, 59);
+
+        return !localDateTime.isAfter(endOfDay) && !this.isChecked();
     }
 
     /**

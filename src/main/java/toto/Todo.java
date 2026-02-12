@@ -1,5 +1,7 @@
 package toto;
 
+import java.time.LocalDate;
+
 /**
  * Represents a todo task.
  *
@@ -16,6 +18,18 @@ public class Todo extends Task {
         super(desc);
     }
 
+    @Override
+    public String getTaskType() {
+        return "T";
+    }
+
+    @Override
+    public boolean isOnDate(LocalDate date) {
+        if (this.isChecked()) {
+            return false;
+        }
+        return true;
+    }
     /**
      * Returns a string representation of the todo task
      *

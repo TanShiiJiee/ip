@@ -21,8 +21,10 @@ public class Ui {
                 + "- unmark <Task Number>\n"
                 + "- delete <Task Number>\n"
                 + "- todo <Task>\n"
-                + "- deadline <Task Name> /by <yyyy/M/dd>\n"
-                + "- event <Task Name> /from <yyyy/M/dd hhmm> /to <yyyy/M/dd hhmm>\n"
+                + "- deadline <Task Name> /by <yyyy/M/d>\n"
+                + "- event <Task Name> /from <yyyy/M/d hhmm> /to <yyyy/M/d hhmm>\n"
+                + "- find <Keyword>\n"
+                + "- view <yyyy/M/d>\n"
                 + "- bye \n";
 
         return commandsAvail;

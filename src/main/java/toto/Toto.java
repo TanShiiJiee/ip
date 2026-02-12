@@ -109,6 +109,9 @@ public class Toto {
                 parser.parseFind(tmp);
                 return ui.printMatchingTasks(findTasks(tmp[1]));
 
+            } else if (tmp[0].equalsIgnoreCase("view")) {
+                return parser.parseViewSchedule(tmp, itemList).toString();
+
             } else {
                 throw new TotoException("Toto doesn't understand :( \n"
                         + "Please input a command from the following: \n"
