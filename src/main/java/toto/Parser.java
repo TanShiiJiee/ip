@@ -97,6 +97,7 @@ public class Parser {
 
             String to = command[1].split(" /to")[1].trim();
             LocalDateTime localDateTimeTo = LocalDateTime.parse(to, dateTimeFormatter);
+            assert localDateTimeFrom.isBefore(localDateTimeTo) : "From must be before to";
 
             //Add event into ArrayList with formatted Date Time
             taskArrayList.add(new Event(desc,

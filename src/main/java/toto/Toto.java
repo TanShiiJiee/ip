@@ -19,6 +19,7 @@ public class Toto {
      * @param filePath the path to store the list of task.
      */
     public Toto(String filePath) {
+        assert filePath != null : "File path cannot be null";
         ui = new Ui();
         storage = new Storage(filePath);
         itemList = storage.getTaskArrayList();
@@ -51,7 +52,6 @@ public class Toto {
     public String getResponse(String input) {
         String[] tmp = input.split(" ", 2);
         try {
-            //String line = "___________________________________________________________ \n";
             if (tmp[0].equalsIgnoreCase("bye")) { // User enters "bye" command then chatbot exits
                 return ui.displayEnd();
             } else if (tmp[0].equalsIgnoreCase("list")) {
