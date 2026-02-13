@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+// Use of CoPilot to handle missing data file and create new file if not found
+
 /**
  * Responsible for saving task data to text file.
  * Responsible for loading, updating, and saving tasks.
@@ -36,29 +39,33 @@ public class Storage {
             if (file.createNewFile()) {
                 System.out.println("Looks like you are new here! Welcome!");
             } else {
-                Scanner sc = new Scanner(new FileReader(taskFile));
-                while (sc.hasNext()) {
-                    String readTask = sc.nextLine();
-                    String[] tmp = readTask.split("\\|");
-                    if (tmp[0].equalsIgnoreCase("T")) {
-                        taskArrayList.add(new Todo(tmp[2]));
-                        if (Integer.parseInt(tmp[1]) == 1) {
-                            taskArrayList.get(taskArrayList.size() - 1).markChecked();
-                        }
+                try (Scanner sc = new Scanner(new FileReader(taskFile))) {
+                    while (sc.hasNext()) {
+                        String readTask = sc.nextLine();
+                        String[] tmp = readTask.split("\\|");
+                        if (tmp[0].equalsIgnoreCase("T")) {
+                            taskArrayList.add(new Todo(tmp[2]));
+                            if (Integer.parseInt(tmp[1]) == 1) {
+                                taskArrayList.get(taskArrayList.size() - 1).markChecked();
+                            }
 
-                    } else if (tmp[0].equalsIgnoreCase("D")) {
-                        taskArrayList.add(new Deadline(tmp[2], tmp[3]));
-                        if (Integer.parseInt(tmp[1]) == 1) {
-                            taskArrayList.get(taskArrayList.size() - 1).markChecked();
-                        }
-                    } else if (tmp[0].equalsIgnoreCase("E")) {
-                        taskArrayList.add(new Event(tmp[2], tmp[3], tmp[4]));
-                        if (Integer.parseInt(tmp[1]) == 1) {
-                            taskArrayList.get(taskArrayList.size() - 1).markChecked();
+                        } else if (tmp[0].equalsIgnoreCase("D")) {
+                            taskArrayList.add(new Deadline(tmp[2], tmp[3]));
+                            if (Integer.parseInt(tmp[1]) == 1) {
+                                taskArrayList.get(taskArrayList.size() - 1).markChecked();
+                            }
+                        } else if (tmp[0].equalsIgnoreCase("E")) {
+                            taskArrayList.add(new Event(tmp[2], tmp[3], tmp[4]));
+                            if (Integer.parseInt(tmp[1]) == 1) {
+                                taskArrayList.get(taskArrayList.size() - 1).markChecked();
+                            }
                         }
                     }
+                    System.out.println("Loaded saved file! Ready to serve you!");
+                } catch (java.io.FileNotFoundException e) {
+                    System.out.println("Data file not found at: " + taskFile
+                            + ". Starting with an empty task list.");
                 }
-                System.out.println("Loaded saved file! Ready to serve you!");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
