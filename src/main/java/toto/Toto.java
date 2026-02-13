@@ -24,6 +24,8 @@ public class Toto {
         storage = new Storage(filePath);
         itemList = storage.getTaskArrayList();
         parser = new Parser();
+
+
     }
 
     /**
