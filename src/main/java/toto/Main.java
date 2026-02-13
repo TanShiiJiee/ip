@@ -23,6 +23,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(220);
             stage.setMinWidth(417);
+            stage.setTitle("Toto");
             fxmlLoader.<MainWindow>getController().setToto(toto); // inject the Toto instance
             stage.show();
         } catch (IOException e) {
