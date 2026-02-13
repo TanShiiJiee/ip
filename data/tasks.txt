@@ -1,5 +1,0 @@
-E|1|BP concert|Jun 22 2025 0900|Jun 22 2025 2100
-E|1|TWICE concert|Jun 24 2025 0900|Jun 24 2025 2100
-D|1|event|Sep 22 2025
-E|0|pop-up store|Sep 22 2025 1111|Oct 1 2025 1111
-T|0|test long long something

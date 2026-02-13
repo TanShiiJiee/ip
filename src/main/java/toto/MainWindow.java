@@ -24,6 +24,7 @@ public class MainWindow extends AnchorPane {
 
     private Toto toto;
 
+    // Images for user and Toto created using Canva
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaPerson.png"));
     private Image totoImage = new Image(this.getClass().getResourceAsStream("/images/DaToto.png"));
 
