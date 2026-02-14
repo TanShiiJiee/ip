@@ -1,5 +1,5 @@
 # Toto User Guide🤖
-<img src="/docs/Ui.png" width="250" alt="Ui image">
+![Ui Screenshot](Ui.png)
 
 Toto is a **task management chatbot** designed to  manage your to-dos, deadlines and events easily through a GUI interface. Allowing you to stay *organized* and *stress-free*.
 
