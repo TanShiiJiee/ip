@@ -124,7 +124,6 @@ public class Parser {
     public void parseDeadline(String[] command, ArrayList<Task> taskArrayList) throws TotoException {
         try {
             String desc = command[1].split(" /")[0].trim();
-            //System.out.println(desc);
             String by = command[1].split("/by")[1].trim();
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/M/d");
             LocalDate localDate = LocalDate.parse(by, dateTimeFormatter);
@@ -183,5 +182,22 @@ public class Parser {
         } catch (TotoException e) {
             throw new TotoException(e.getMessage());
         }
+    }
+
+    /**
+     * Handles "sort" command and checks for valid parsing input.
+     *
+     * @param command represents the split array of commands.
+     * @throws TotoException if command is invalid
+     */
+    public void parseSort(String[] command) throws TotoException {
+        try {
+            if (command.length != 1) {
+                throw new TotoException(invalidCommandMessage);
+            }
+        } catch (TotoException e) {
+            throw new TotoException(e.getMessage());
+        }
+
     }
 }

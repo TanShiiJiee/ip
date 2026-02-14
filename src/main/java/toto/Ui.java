@@ -25,6 +25,7 @@ public class Ui {
                 + "- event <Task Name> /from <yyyy/M/d hhmm> /to <yyyy/M/d hhmm>\n"
                 + "- find <Keyword>\n"
                 + "- view <yyyy/M/d>\n"
+                + "- sort\n"
                 + "- bye \n";
 
         return commandsAvail;
@@ -87,13 +88,10 @@ public class Ui {
      */
     public String printMark(boolean isMark) {
         String markMsg;
-        //String checkedMark;
         if (isMark) {
             markMsg = "Done! Toto is very happy :)\n";
-            //checkedMark = "[X] ";
         } else {
             markMsg = "Oh no! Back to work!\n";
-            // = "[ ] ";
         }
         return markMsg;
     }

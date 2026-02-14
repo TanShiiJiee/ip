@@ -114,6 +114,13 @@ public class Toto {
             } else if (tmp[0].equalsIgnoreCase("view")) {
                 return parser.parseViewSchedule(tmp, itemList).toString();
 
+            } else if (tmp[0].equalsIgnoreCase("sort")) {
+                parser.parseSort(tmp);
+                SortAlphabetically sortAlphabetically = new SortAlphabetically(itemList);
+                sortAlphabetically.sortTask();
+
+                return ui.printItem(itemList);
+
             } else {
                 throw new TotoException("Toto doesn't understand :( \n"
                         + "Please input a command from the following: \n"

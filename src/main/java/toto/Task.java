@@ -48,14 +48,14 @@ public class Task {
     }
 
     /**
-     * Mark the task as checked.
+     * Marks the task as checked.
      */
     public void markChecked() {
         this.isChecked = true;
     }
 
     /**
-     * Mark the task as unchecked.
+     * Marks the task as unchecked.
      */
     public void unmarkChecked() {
         this.isChecked = false;
