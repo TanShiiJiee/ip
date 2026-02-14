@@ -77,7 +77,7 @@ public class Ui {
      * @return the message to displayed when deleted.
      */
     public String printDeleted() {
-        return "Task Deleted! Toto had removed this task:\n";
+        return "Task Deleted! Toto has removed this task:\n";
     }
 
     /**
@@ -104,7 +104,7 @@ public class Ui {
      * @return the task that has been added.
      */
     public String printAddedTask(Task task, int size) {
-        String tmp = "Task received! Toto had added this task:\n"
+        String tmp = "Task received! Toto has added this task:\n"
                 + task.toString()
                 + "\nNow You have " + size
                 + " task(s) in the list!"

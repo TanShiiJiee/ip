@@ -46,25 +46,26 @@ public class ViewSchedule {
      * @return the full table of scheduled tasks for the date.
      */
     public StringBuilder displayFullTable() {
-        String tableView = "|-------------------------------|\n"
-                + "| Type   |           Task              |\n"
-                + "|--------|----------------------|\n";
+        String tableView = "|-------|----------------------|\n"
+                + "| Type | Task                        |\n"
+                + "|-------|----------------------|\n";
         StringBuilder fullTable = new StringBuilder(tableView);
         for (Task task : filteredList) {
             String desc = task.getDescription();
             String displayName;
             String taskType = task.getTaskType();
 
-            if (desc.length() > 20) {
-                displayName = desc.substring(0, 17) + "...";
+            if (desc.length() > 18) {
+                displayName = desc.substring(0, 14) + "...";
             } else {
                 displayName = desc;
             }
 
-            fullTable.append(String.format("|  %-7s | %-22s |\n|-------------------------------|\n",
+            fullTable.append(String.format("  %-6s    %-18s\n",
                     taskType, displayName));
         }
-        fullTable.append("Total tasks: ").append(filteredList.size()).append("\n");
+
+        fullTable.append("\nTotal task(s): ").append(filteredList.size()).append("\n");
         return fullTable;
     }
 }
